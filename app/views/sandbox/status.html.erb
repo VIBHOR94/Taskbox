@@ -1,0 +1,71 @@
+<h1>Completed tasks : </h1>
+
+<table border="1">
+	<thead>
+		<tr>
+		<th>Index</th>
+		<th>Title</th>
+		<th>Due Date</th>
+		<th>Project id</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%@completed.each_with_index do |a,index|%>
+		<tr>
+		<td><%=index + 1 %></td>
+		<td><%=a.title%></td>
+		<td><%=a.due_date%></td>
+		<td><%=a.project_id%></td>
+		<%end%>
+	</tr>
+	</tbody>
+	</table>
+
+<h1>Incomplete tasks : </h1>
+
+<table border="1">
+	<thead>
+		<tr>
+		<th>Index</th>
+		<th>Title</th>
+		<th>Due Date</th>
+		<th>Project id</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%@incompleted.each_with_index do |due,index|%>
+		<tr>
+		<td><%=index + 1 %></td>
+		<td><%=due.title%></td>
+		<td><%=due.due_date%></td>
+		<td><%=due.project_id%></td>
+		<%end%>
+	</tr>
+	</tbody>
+	</table>
+
+<h1>Overdue tasks : </h1>
+
+<table border="1">
+	<thead>
+		<tr>
+		<th>Index</th>
+		<th>Title</th>
+		<th>Due Date</th>
+		<th>Project id</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%@over.each_with_index do |over,index|%>
+		<tr>
+		<td><%=index + 1 %></td>
+		<td><%=over.title%></td>
+		<td><%=over.due_date%></td>
+		<td><%=over.project_id%></td>
+		<%end%>
+	</tr>
+	</tbody>
+	</table><br />
+	Id : <%=@id%><br />
+	Page : <%=@page%>
+	<%=params.inspect%>

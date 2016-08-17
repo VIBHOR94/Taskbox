@@ -1,0 +1,27 @@
+<table>
+	<table border="1">
+	<thead>
+		<tr>
+		<th>#</th>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Start</th>
+		<th>End</th>
+		<th>Action</th>
+		<th>Client Name</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%Project.all.each_with_index do |project,index|%>
+		<tr>
+		<td><%=index + 1 %></td>
+		<td><%=project.name.capitalize%></td>
+		<td><%=project.description%></td>
+		<td><%=project.start_date%></td>
+		<td><%=project.end_date%></td>
+		<td><%=link_to "Show",project_path(project.id)%></td>
+		<td><%=link_to "#{Client.find(project.client_id).name}",client_path(project.client.id)%></td>
+	<%end%>
+	</tr>
+	</tbody>
+</table>

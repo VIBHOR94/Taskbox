@@ -1,0 +1,15 @@
+<a href="goodbye">Say Goodbye</a>
+<%=link_to "Say Goodbye",say_goodbye_path%>
+<%=link_to "Products Page",say_products_path%>
+<h1>Now Showing</h1>
+<%movies={"Uturn"=>["Veeresh,Pvr",120,8.4],"Kabaali"=>["Inox,Lido",144,9.2],"Sultan"=>["Inox,Pvr,Lido",132,9.8]}%>
+<ol><%movies.each do |k1,v1|%>
+<li><%=k1%></li>
+<ul>
+<li>Theatre - <%=v1[0]%></li>
+<li>Duration - <%=v1[1]%> mins</li>
+<li>Rating - <%=v1[2]%></li>
+<br>
+</ul>
+<%end%></ol>
+

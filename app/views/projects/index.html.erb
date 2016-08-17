@@ -1,0 +1,65 @@
+<div class="row">
+	<div class="col-md-7">
+		<div class="page-header">
+		<h3>Listing Projects </h3>
+<b>Filter by:
+	<%=link_to "New",projects_path(status: "New")%>|
+	<%=link_to "On-Going",projects_path(status: "On-Going")%>|
+	<%=link_to "Completed",projects_path(status: "Completed")%>|
+	<%=link_to "All",projects_path%>
+</b>
+<%if Project.all.empty?%>
+	No data found.
+<%else%>
+<table>
+	<table border="1">
+	<thead>
+		<tr>
+		<th>#</th>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Start</th>
+		<th>End</th>
+		<th>Action</th>
+		<th>Client Name</th>
+		<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%@projects.all.each_with_index do |project,index|%>
+		<tr>
+		<td><%=index + 1 %></td>
+		<td><%=project.name.capitalize%></td>
+		<td><%=project.description%></td>
+		<td><%=project.start_date%></td>
+		<td><%=project.end_date%></td>
+		<td><%=link_to "Show",project_path(project.id)%></td>
+		<td><%=link_to "#{Client.find(project.client_id).name}",client_path(project.client.id)%></td>
+		<td><%=project.status%></td>
+	<%end%>
+	</tr>
+	</tbody>
+</table>
+<%=link_to "Add Project",new_project_path%>
+<%end%>
+</div></div>
+<div class="col-md-5">
+<div class="page-header">
+
+<% data ={}
+	statuses=current_user.projects.pluck(:status).uniq
+	statuses.each do |status|
+		data[status]=current_user.projects.where('status=?',status).count
+	end
+	%>
+<%=pie_chart(data)%>
+
+<% data ={}
+	current_user.projects.each do |project|
+		data[project.name]=project.tasks.size
+	end
+	%>
+<%=column_chart(data)%>
+</div></div></div>
+	
+

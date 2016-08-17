@@ -1,0 +1,15 @@
+class CreateProjects < ActiveRecord::Migration
+	belongs_to :client
+	has_many :task
+  def change
+    create_table :projects do |t|
+    	t.string :name
+    	t.text :description
+    	t.date :start_date
+    	t.date :end_date
+    	t.integer :client_id
+
+      t.timestamps null: false
+    end
+  end
+end

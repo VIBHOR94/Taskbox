@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Caterogries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+<%=@caterogries.size%>
+  <tbody>
+    <% @caterogries.each do |caterogry| %>
+      <tr>
+        <td><%= caterogry.name %></td>
+        <td><%= caterogry.user_id %></td>
+        <td><%= link_to 'Show', caterogry %></td>
+        <td><%= link_to 'Edit', edit_caterogry_path(caterogry) %></td>
+        <td><%= link_to 'Destroy', caterogry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Caterogry', new_caterogry_path %>

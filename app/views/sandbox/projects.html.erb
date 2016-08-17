@@ -1,0 +1,22 @@
+<h3>Listing Projects</h3>
+<h4>Total Projects : <%=@projects.size%></h4>
+<table border='1'>
+<thead>
+	<tr>
+		<th>Name</th>
+		<th>Clients</th>
+		<th>Start Date</th>
+		<th>End Date</th>
+	</tr>
+</thead>
+<% @projects.each do |project| %>
+<tr>
+	<td><%= project.name%></td>
+	<td><%= project.client_id%></td>
+	<td><%= project.start_date.strftime("%A,%d %B %Y")%></td>
+	<td><%= project.end_date.strftime("%A,%d %B %Y")%></td>
+</tr>
+<%end%>
+<tbody>
+</tbody>
+

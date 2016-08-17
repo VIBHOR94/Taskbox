@@ -1,0 +1,71 @@
+15.times do
+	client=Client.new
+	client.name= Faker::Name.first_name
+	client.company= Faker::Company.name
+	client.mobile=Faker::Number.number(10)
+	client.website=Faker::Internet.domain_name
+	client.save
+end
+
+20.times do
+	o=Order.new
+	o.order_date=Faker::Date.between(Date.today.beginning_of_year,Date.today - 2.month)
+	o.order_number=Order.all.pluck(:id) + 1000
+end
+	product.in_stock=Faker::Boolean.boolean
+	product.available_from=Faker::Date.between(Date.today.beginning_of_year,Date.today + 2.month)
+	product.category=Category.all.pluck(:id).sample
+	product.save
+end
+
+	project.start_date=Faker::Date.between(Date.today.beginning_of_year,Date.today)
+	project.end_date=Faker::Date.between(project.start_date , project.start_date+3.months)
+	project.client_id=Project.all.pluck(:id).sample
+	project.save
+end
+Order.all.each do |order|
+	items=LineItem.where('order_id = ?',order.id)
+	order.total=0
+	items.each do |item|
+		order.total += item.total_price
+	end
+end
+Product.all.each do |product|
+	product.name=Faker::Name.name
+	product.save
+end
+
+
+
+index=1
+100.times do
+	presentdate=Date.today.beginning_of_year + index
+	EmployeeOverview.all.each do |employee|
+		attendance=AttendanceSheet.new
+		attendance.employee_id=employee.id
+		attendance.date=presentdate
+		attendance.status=Faker::Boolean.boolean
+		attendance.reason_for_leave=Faker::Lorem.word
+		attendance.save
+	end
+	index += 1
+end
+
+200.times do
+	customer=CustomerDetail.new
+	customer.name=Faker::Name.name
+	customer.username=Faker::Name.first_name
+	customer.mobile_no=Faker::Number.number(10)
+	customer.email_id=Faker::Internet.email
+	customer.address=Faker::Address.street_address
+	customer.date_of_birth=Faker::Date.between(Date.today.beginning_of_year - 25.year , Date.today.beginning_of_year - 20.year)
+	customer.country=Faker::Address.country
+	customer.save
+end
+		
+		
+		
+	 
+	
+end
+

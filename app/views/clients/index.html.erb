@@ -1,0 +1,57 @@
+<h3>Listing all clients</h3>
+<div class="row">
+<div class="page-header">
+	<%if @clients.empty?%>
+		No data found.
+	<%else%>
+		</div></div>
+		<%=link_to "Export to Excel", clients_path(format: "xls")%>
+		<script>
+			$(document).ready(function(){
+    			$('#clienttable').DataTable();
+			});
+		</script>
+		<table class="table table-stripped" id="clienttable">
+			<table border="1">
+				<thead>
+					<tr>
+					<th>#</th>
+					<th>Name</th>
+					<th>Mobile</th>
+					<th>Email</th>
+					<th>Company</th>
+					<th>Action</th>
+					<th>Total Projects</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%@clients.each_with_index do |client,index|%>
+					<tr>
+						<td><%=index + 1 %></td>
+						<td><%=link_to client.name,client_path(client.id)%></td>
+						<td><%=client.mobile%></td>
+						<td><%=client.email%></td>
+						<td><%=client.company%></td>
+						<td><%=link_to client_path(client.id) do%><span class="glyphicon glyphicon-eye-open"></span></td><%end%>
+						<td><%=client.projects.size%></td>
+					</tr>
+					<%end%>
+				</tbody>
+		</table>
+	<%end%><br />
+
+<%=link_to "Add Client",new_client_path, class: "btn btn-default"%>
+
+<div class="col-md-5">
+	<div class="page-header">
+		<h2>Some Stats</h2>
+	</div>
+	<% data ={}
+		current_user.clients.each do |client|
+			data[client.name]=client.projects.count
+		end
+	%>
+	<%data%>
+	<%= pie_chart(data)%>
+	<%=column_chart(data)%>
+	<%=bar_chart(data)%>

@@ -1,0 +1,25 @@
+<table>
+	<table border="1">
+	<thead>
+		<tr>
+		<th>#</th>
+		<th>Name</th>
+		<th>Mobile</th>
+		<th>Email</th>
+		<th>Company</th>
+		<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%@clients.each_with_index do |client,index|%>
+		<tr>
+		<td><%=index + 1 %></td>
+		<td><%=link_to client.name,client_path(client.id)%></td>
+		<td><%=client.mobile%></td>
+		<td><%=client.email%></td>
+		<td><%=client.company%></td>
+		<td><%=link_to "Show",client_url(client.id)%></td>
+	<%end%>
+	</tr>
+	</tbody>
+</table>

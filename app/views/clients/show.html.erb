@@ -1,0 +1,19 @@
+<h3>Client details -: </h3><br /><br />
+<%client=@client%>
+Name : <%=client.name%><br />
+Mobile : <%=client.mobile%><br />
+Email : <%=client.email%><br />
+Company : <%=client.company%><br />
+
+<%if client.projects.empty?%>
+	<br />No Projects Found.	
+<%else%>
+	Total projects = <%projectsfound=client.projects%><%=projectsfound.size%><br />
+	<%projectsfound.each do |project|%><ol>
+		<li>Description = <%=project.description%><br />
+		<li>Start Date = <%=project.start_date%><br />
+		<li>End Date = <%=project.end_date%><br />
+		<li>Client id = <%=project.client_id%><br />
+		<li>Estimated budget = <%=project.estimated_budget%><br /><hr /></ol>
+	<%end%>
+<%end%>

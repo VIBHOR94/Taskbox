@@ -1,0 +1,36 @@
+<h1>Total Clients : <%= @clients.count %> </h1>
+<p><ol>
+<%@clients.each do |client|%>
+<li><%= client.name %> <%= client.mobile %>  <%= client.company%></li>
+<%end%>
+</ol></p>
+
+<table border="1">
+	<thead>
+		<tr>
+		<th>#</th>
+		<th>Name</th>
+		<th>Mobile</th>
+		<th>Company</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%@clients.each_with_index do |client,index|%>
+		<tr>
+		<td><%=index + 1 %></td>
+		<td><%=client.name.capitalize%></td>
+		<td><%=client.mobile%></td>
+		<td><%=client.company%></td>
+		<%end%>
+	</tr>
+	</tbody>
+	</table>
+<p>Name = <%=@client.name%><br />Mobile Number = <%=@client.mobile%><br />Company - <%=@client.company%><br/></p>
+<ol>
+<%@byid.each do |byid| %>
+	<li><%=byid.name%></li>
+<%end%>
+</ol>
+		
+		
+	 	

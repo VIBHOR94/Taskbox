@@ -1,0 +1,12 @@
+Project details -:<br /><br /><ol><hr>
+<%@projects.each do |project|%>
+	<li>Name - <%=project.name%> ; Description - <%=project.description%> ; Start Date - <%=project.start_date%> ; End Date - <%=project.end_date%><hr>
+	Tasks are as follows :-<br /><br />
+	<%if not(project.tasks.empty?)%><ol>
+		<%project.tasks.each do |task|%>
+			<li>Title - <%=task.title%><br /> Due Date - <%=task.due_date%> <br />Completion Status - <%=task.is_completed%><br /><br />
+		<%end%></li></ol><br>
+	<%else%>
+		No task found.
+	<%end%>	<hr>
+<%end%></li></ol>
